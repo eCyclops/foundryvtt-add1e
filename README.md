@@ -15,6 +15,4 @@ I will be updating to other artwork as the fork progresses.
 Weapon quality icons, and the Treasure chest are from [Rexxard](https://assetstore.unity.com/packages/2d/gui/icons/flat-skills-icons-82713).
 
 ## Contributions
-Any feedback is deeply appreciated. Please issue [tickets](https://github.com/eCyclops/foundryvtt-add1e/issues).\
-
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/H2H21WMKA)
+Any feedback is deeply appreciated. Please issue [tickets](https://github.com/eCyclops/foundryvtt-add1e/issues).
