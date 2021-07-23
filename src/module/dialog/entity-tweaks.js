@@ -6,7 +6,7 @@ export class OseEntityTweaks extends FormApplication {
     const options = super.defaultOptions;
     options.id = 'sheet-tweaks';
     options.template =
-      'systems/ose/templates/actors/dialogs/tweaks-dialog.html';
+      'systems/add1e/templates/actors/dialogs/tweaks-dialog.html';
     options.width = 380;
     return options;
   }
@@ -33,7 +33,7 @@ export class OseEntityTweaks extends FormApplication {
       data.isCharacter = true;
     }
     data.user = game.user;
-    data.config = { ...CONFIG.OSE, ascendingAC: game.settings.get("ose", "ascendingAC") };
+    data.config = { ...CONFIG.OSE, ascendingAC: game.settings.get("add1e", "ascendingAC") };
     return data;
   }
 

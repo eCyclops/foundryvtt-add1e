@@ -16,7 +16,7 @@ export async function createOseMacro(data, slot) {
     const item = data.data;
 
     // Create the macro command
-    const command = `game.ose.rollItemMacro("${item.name}");`;
+    const command = `game.add1e.rollItemMacro("${item.name}");`;
     let macro = game.macros.contents.find(m => (m.name === item.name) && (m.command === command));
     if ( !macro ) {
       macro = await Macro.create({
@@ -24,7 +24,7 @@ export async function createOseMacro(data, slot) {
         type: "script",
         img: item.img,
         command: command,
-        flags: {"ose.itemMacro": true}
+        flags: {"add1e.itemMacro": true}
       });
     }
     game.user.assignHotbarMacro(macro, slot);

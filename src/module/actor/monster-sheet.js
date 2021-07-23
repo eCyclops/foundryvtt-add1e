@@ -17,8 +17,8 @@ export class OseActorSheetMonster extends OseActorSheet {
    */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["ose", "sheet", "monster", "actor"],
-      template: "systems/ose/templates/actors/monster-sheet.html",
+      classes: ["add1e", "sheet", "monster", "actor"],
+      template: "systems/add1e/templates/actors/monster-sheet.html",
       width: 450,
       height: 560,
       resizable: true,
@@ -94,7 +94,7 @@ export class OseActorSheetMonster extends OseActorSheet {
     data.attackPatterns = attackPatterns;
     data.spells = sortedSpells;
     [...Object.values(data.attackPatterns), ...Object.values(data.owned), ...Object.values(data.spells)].forEach(o => o.sort((a, b) => (a.data.sort || 0) - (b.data.sort || 0)));
-  
+
   }
 
   /**
@@ -107,7 +107,7 @@ export class OseActorSheetMonster extends OseActorSheet {
     this._prepareItems(data);
 
     // Settings
-    data.config.morale = game.settings.get("ose", "morale");
+    data.config.morale = game.settings.get("add1e", "morale");
     data.data.details.treasure.link = TextEditor.enrichHTML(data.data.details.treasure.table);
     data.isNew = this.actor.isNew();
     return data;
@@ -121,7 +121,7 @@ export class OseActorSheetMonster extends OseActorSheet {
 
     let templateData = { choices: choices },
       dlg = await renderTemplate(
-        "/systems/ose/templates/actors/dialogs/monster-saves.html",
+        "/systems/add1e/templates/actors/dialogs/monster-saves.html",
         templateData
       );
     //Create Dialog window
@@ -173,7 +173,7 @@ export class OseActorSheetMonster extends OseActorSheet {
   async _chooseItemType(choices = ["weapon", "armor", "shield", "gear"]) {
     let templateData = { types: choices },
       dlg = await renderTemplate(
-        "systems/ose/templates/items/entity-create.html",
+        "systems/add1e/templates/items/entity-create.html",
         templateData
       );
     //Create Dialog window

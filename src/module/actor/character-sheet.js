@@ -19,8 +19,8 @@ export class OseActorSheetCharacter extends OseActorSheet {
    */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["ose", "sheet", "actor", "character"],
-      template: "systems/ose/templates/actors/character-sheet.html",
+      classes: ["add1e", "sheet", "actor", "character"],
+      template: "systems/add1e/templates/actors/character-sheet.html",
       width: 450,
       height: 530,
       resizable: true,
@@ -83,7 +83,7 @@ export class OseActorSheetCharacter extends OseActorSheet {
       }, 0);
       return arr;
     });
-    
+
     // Assign and return
     data.owned = {
       items: items,
@@ -124,7 +124,7 @@ export class OseActorSheetCharacter extends OseActorSheet {
 
     let templateData = { choices: choices },
       dlg = await renderTemplate(
-        "/systems/ose/templates/actors/dialogs/lang-create.html",
+        "/systems/add1e/templates/actors/dialogs/lang-create.html",
         templateData
       );
     //Create Dialog window
@@ -196,7 +196,7 @@ export class OseActorSheetCharacter extends OseActorSheet {
    async _onShowItemTooltip(event) {
     let templateData = {},
       dlg = await renderTemplate(
-        "/systems/ose/templates/actors/partials/character-item-tooltip.html",
+        "/systems/add1e/templates/actors/partials/character-item-tooltip.html",
         templateData
       );
       document.querySelector(".game").append(dlg);

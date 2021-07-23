@@ -4,10 +4,10 @@ import { OseDice } from "../dice.js";
 export class OseCharacterCreator extends FormApplication {
   static get defaultOptions() {
     const options = super.defaultOptions;
-    (options.classes = ["ose", "dialog", "creator"]),
+    (options.classes = ["add1e", "dialog", "creator"]),
       (options.id = "character-creator");
     options.template =
-      "systems/ose/templates/actors/dialogs/character-creation.html";
+      "systems/add1e/templates/actors/dialogs/character-creation.html";
     options.width = 235;
     return options;
   }
@@ -128,7 +128,7 @@ export class OseCharacterCreator extends FormApplication {
       gold: this.gold,
     };
     const content = await renderTemplate(
-      "/systems/ose/templates/chat/roll-creation.html",
+      "/systems/add1e/templates/chat/roll-creation.html",
       templateData
     );
     ChatMessage.create({
@@ -189,7 +189,7 @@ export class OseCharacterCreator extends FormApplication {
     const itemData = {
       name: "GP",
       type: "item",
-      img: "/systems/ose/assets/gold.png",
+      img: "/systems/add1e/assets/gold.png",
       data: {
         treasure: true,
         cost: 1,

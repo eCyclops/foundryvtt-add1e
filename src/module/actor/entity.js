@@ -18,7 +18,7 @@ export class OseActor extends Actor {
     this.computeTreasure();
 
     // Determine Initiative
-    if (game.settings.get("ose", "initiative") != "group") {
+    if (game.settings.get("add1e", "initiative") != "group") {
       data.initiative.value = data.initiative.mod;
       if (this.data.type == "character") {
         data.initiative.value += data.scores.dex.mod;
@@ -455,7 +455,7 @@ export class OseActor extends Actor {
       dmgParts.push(attData.item.data.damage);
     }
 
-    let ascending = game.settings.get("ose", "ascendingAC");
+    let ascending = game.settings.get("add1e", "ascendingAC");
     if (ascending) {
       rollParts.push(data.thac0.bba.toString());
     }
@@ -542,7 +542,7 @@ export class OseActor extends Actor {
       return;
     }
     const data = this.data.data;
-    let option = game.settings.get("ose", "encumbranceOption");
+    let option = game.settings.get("add1e", "encumbranceOption");
     const items = [...this.data.items.values()];
     // Compute encumbrance
     const hasItems = items.every((item) => {
@@ -566,7 +566,7 @@ export class OseActor extends Actor {
 
     const max =
       option === "basic"
-        ? game.settings.get("ose", "significantTreasure")
+        ? game.settings.get("add1e", "significantTreasure")
         : data.encumbrance.max;
 
     let steps = ["detailed", "complete"].includes(option)
@@ -588,7 +588,7 @@ export class OseActor extends Actor {
 
   _calculateMovement() {
     const data = this.data.data;
-    let option = game.settings.get("ose", "encumbranceOption");
+    let option = game.settings.get("add1e", "encumbranceOption");
     let weight = data.encumbrance.value;
     let delta = data.encumbrance.max - 1600;
     if (["detailed", "complete"].includes(option)) {
@@ -626,7 +626,7 @@ export class OseActor extends Actor {
           data.movement.base = 60;
           break;
       }
-      if (weight > game.settings.get("ose", "significantTreasure")) {
+      if (weight > game.settings.get("add1e", "significantTreasure")) {
         data.movement.base -= 30;
       }
     }

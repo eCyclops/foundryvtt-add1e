@@ -1,11 +1,11 @@
 import { OsePartyXP } from "./party-xp.js";
 
 export class OsePartySheet extends FormApplication {
-  
+
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["ose", "dialog", "party-sheet"],
-      template: "systems/ose/templates/apps/party-sheet.html",
+      classes: ["add1e", "dialog", "party-sheet"],
+      template: "systems/add1e/templates/apps/party-sheet.html",
       width: 280,
       height: 400,
       resizable: true,
@@ -30,7 +30,7 @@ export class OsePartySheet extends FormApplication {
    */
   getData() {
     const settings = {
-      ascending: game.settings.get('ose', 'ascendingAC')
+      ascending: game.settings.get('add1e', 'ascendingAC')
     };
     let data = {
       data: this.object,
@@ -60,7 +60,7 @@ export class OsePartySheet extends FormApplication {
 
   async _selectActors(ev) {
     const entities = this.object.entities.sort((a, b) => b.data.token.disposition - a.data.token.disposition);
-    const template = "/systems/ose/templates/apps/party-select.html";
+    const template = "/systems/add1e/templates/apps/party-select.html";
     const templateData = {
       actors: entities
     }
@@ -76,7 +76,7 @@ export class OsePartySheet extends FormApplication {
             let checks = html.find("input[data-action='select-actor']");
             await Promise.all(checks.map(async (_, c) => {
               let key = c.getAttribute('name');
-              await this.object.entities[key].setFlag('ose', 'party', c.checked);
+              await this.object.entities[key].setFlag('add1e', 'party', c.checked);
             }));
             this.render(true);
           },
@@ -85,7 +85,7 @@ export class OsePartySheet extends FormApplication {
     }, {
       height: "auto",
       width: 260,
-      classes: ["ose", "dialog", "party-select"]
+      classes: ["add1e", "dialog", "party-select"]
     })
     .render(true);
   }
@@ -96,9 +96,9 @@ export class OsePartySheet extends FormApplication {
     html
       .find(".item-controls .item-control .select-actors")
       .click(this._selectActors.bind(this));
-    
+
       html.find(".item-controls .item-control .deal-xp").click(this._dealXP.bind(this));
-    
+
     html.find("a.resync").click(() => this.render(true));
 
     html.find(".field-img button[data-action='open-sheet']").click((ev) => {

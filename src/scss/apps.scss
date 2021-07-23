@@ -1,11 +1,11 @@
-.ose.roll-dialog {
+.add1e.roll-dialog {
   .roll-details {
     font-weight: bold;
     text-align: center;
   }
 }
 
-.ose.dialog.creator {
+.add1e.dialog.creator {
   .attribute-list {
     .form-fields {
       flex: 0 0 50px;
@@ -32,7 +32,7 @@
   }
 }
 
-.ose.dialog.party-xp {
+.add1e.dialog.party-xp {
   .actors {
     max-height: 250px;
     padding: 0 4px 0;
@@ -64,7 +64,7 @@
   }
 }
 
-.ose.dialog.party-select {
+.add1e.dialog.party-select {
   .actor-list {
     padding: 0 4px 0;
     max-height: 250px;
@@ -87,7 +87,7 @@
   }
 }
 
-.ose.dialog.party-sheet {
+.add1e.dialog.party-sheet {
   min-width: 250px;
   min-height: 250px;
   .window-content {
@@ -178,7 +178,7 @@
 }
 
 #sidebar #actors .directory-header .header-search {
-  .ose-party-sheet {
+  .add1e-party-sheet {
     width: 32px;
     text-align: center;
     line-height: 20px;
@@ -188,7 +188,7 @@
   }
 }
 
-.ose.dialog.modifiers {
+.add1e.dialog.modifiers {
   .attribute-bonuses {
     label {
       font-weight: bold;
@@ -209,7 +209,7 @@
       color: white;
       margin: 0 2px 5px 8px;
       border-radius: 8px;
-      background: url("/systems/ose/assets/treasure.png") no-repeat center;
+      background: url("/systems/add1e/assets/treasure.png") no-repeat center;
       background-size: cover;
       padding: 5px 8px;
       cursor: pointer;
@@ -235,7 +235,7 @@
   }
 }
 
-#settings .ose.game-license {
+#settings .add1e.game-license {
   font-size: 12px;
   .button {
     text-align: center;
@@ -246,7 +246,7 @@
   }
 }
 
-.ose.chat-block {
+.add1e.chat-block {
   margin: 0;
   .chat-header {
     height: 46px;
@@ -322,7 +322,7 @@
   }
 }
 
-.ose.chat-card {
+.add1e.chat-card {
   font-style: normal;
   font-size: 12px;
 

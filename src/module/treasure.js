@@ -1,15 +1,15 @@
 export const augmentTable = (table, html, data) => {
   // Treasure Toggle
   let head = html.find(".sheet-header");
-  const flag = table.object.getFlag("ose", "treasure");
+  const flag = table.object.getFlag("add1e", "treasure");
   const treasure = flag
     ? "<div class='toggle-treasure active'></div>"
     : "<div class='toggle-treasure'></div>";
   head.append(treasure);
 
   html.find(".toggle-treasure").click((ev) => {
-    let isTreasure = table.object.getFlag("ose", "treasure");
-    table.object.setFlag("ose", "treasure", !isTreasure);
+    let isTreasure = table.object.getFlag("add1e", "treasure");
+    table.object.setFlag("add1e", "treasure", !isTreasure);
   });
 
   // Treasure table formatting
@@ -37,7 +37,7 @@ function drawTreasure(table, data) {
     return roll.total <= chance;
   };
   data.treasure = {};
-  if (table.getFlag('ose', 'treasure')) {
+  if (table.getFlag('add1e', 'treasure')) {
     table.results.forEach((r) => {
       if (percent(r.data.weight)) {
         const text = r.getChatText(r);
@@ -83,13 +83,13 @@ async function rollTreasure(table, options = {}) {
   }
 
   let html = await renderTemplate(
-    "systems/ose/templates/chat/roll-treasure.html",
+    "systems/add1e/templates/chat/roll-treasure.html",
     templateData
   );
 
   let chatData = {
     content: html,
-    // sound: "/systems/ose/assets/coins.mp3"
+    // sound: "/systems/add1e/assets/coins.mp3"
   }
 
   let rollMode = game.settings.get("core", "rollMode");

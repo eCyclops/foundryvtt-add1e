@@ -4,10 +4,10 @@ import { OseActor } from '../actor/entity.js';
 export class OseCharacterModifiers extends FormApplication {
   static get defaultOptions() {
     const options = super.defaultOptions;
-    options.classes = ["ose", "dialog", "modifiers"],
+    options.classes = ["add1e", "dialog", "modifiers"],
     options.id = 'sheet-modifiers';
     options.template =
-      'systems/ose/templates/actors/dialogs/modifiers-dialog.html';
+      'systems/add1e/templates/actors/dialogs/modifiers-dialog.html';
     options.width = 240;
     return options;
   }

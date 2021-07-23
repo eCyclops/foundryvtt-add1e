@@ -14,9 +14,9 @@ export class OseActorSheet extends ActorSheet {
 
     data.config = {
       ...CONFIG.OSE,
-      ascendingAC: game.settings.get("ose", "ascendingAC"),
-      initiative: game.settings.get("ose", "initiative") != "group",
-      encumbrance: game.settings.get("ose", "encumbranceOption")
+      ascendingAC: game.settings.get("add1e", "ascendingAC"),
+      initiative: game.settings.get("add1e", "initiative") != "group",
+      encumbrance: game.settings.get("add1e", "encumbranceOption")
     };
     data.isNew = this.actor.isNew();
 
@@ -174,7 +174,7 @@ export class OseActorSheet extends ActorSheet {
     const dropTarget = event.target.closest("[data-item-id]");
     const targetId = dropTarget ? dropTarget.dataset.itemId : null;
     const target = siblings.find(s => s.data._id === targetId);
-    
+
     if (target?.data.type == "container") {
       this.actor.updateEmbeddedDocuments("Item", [
         { _id: source.id, "data.containerId": target.id }

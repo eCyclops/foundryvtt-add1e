@@ -7,7 +7,7 @@ export class OseCombat {
     data.combatants = [];
     let groups = {};
     combat.data.combatants.forEach((cbt) => {
-      const group = cbt.getFlag("ose", "group");
+      const group = cbt.getFlag("add1e", "group");
       groups[group] = { present: true };
       data.combatants.push(cbt);
     });
@@ -29,7 +29,7 @@ export class OseCombat {
       if (data.combatants[i].actor.data.data.isSlow) {
         data.combatants[i].update({initiative: OseCombat.STATUS_SLOW});
       } else {
-        const group = data.combatants[i].getFlag("ose", "group");
+        const group = data.combatants[i].getFlag("add1e", "group");
         data.combatants[i].update({initiative: groups[group].initiative});
       }
     }
@@ -37,7 +37,7 @@ export class OseCombat {
   }
 
   static async resetInitiative(combat, data) {
-    let reroll = game.settings.get("ose", "rerollInitiative");
+    let reroll = game.settings.get("add1e", "rerollInitiative");
     if (!["reset", "reroll"].includes(reroll)) {
       return;
     }
@@ -72,7 +72,7 @@ export class OseCombat {
           alias: c.name
         },
         flavor: game.i18n.format('OSE.roll.individualInit', { name: c.token.name }),
-        flags: {"ose.initiativeRoll": true}
+        flags: {"add1e.initiativeRoll": true}
       }, {});
       const chatData = roll.toMessage(messageData, { rollMode: c.hidden && (rollMode === "roll") ? "gmroll" : rollMode, create: false });
 
@@ -102,8 +102,8 @@ export class OseCombat {
       // Append spellcast and retreat
       const controls = $(ct).find(".combatant-controls .combatant-control");
       const cmbtant = object.viewed.combatants.get(ct.dataset.combatantId);
-      const moveInCombat = cmbtant.getFlag("ose", "moveInCombat");
-      const preparingSpell = cmbtant.getFlag("ose", "prepareSpell");
+      const moveInCombat = cmbtant.getFlag("add1e", "moveInCombat");
+      const preparingSpell = cmbtant.getFlag("add1e", "prepareSpell");
       const moveActive = moveInCombat ? "active" : "";
       controls.eq(1).after(
         `<a class='combatant-control move-combat ${moveActive}'><i class='fas fa-walking'></i></a>`
@@ -115,7 +115,7 @@ export class OseCombat {
     });
     OseCombat.announceListener(html);
 
-    let init = game.settings.get("ose", "initiative") === "group";
+    let init = game.settings.get("add1e", "initiative") === "group";
     if (!init) {
       return;
     }
@@ -135,7 +135,7 @@ export class OseCombat {
 
       // Get group color
       const cmbtant = object.viewed.combatants.get(ct.dataset.combatantId);
-      let color = cmbtant.getFlag("ose", "group");
+      let color = cmbtant.getFlag("add1e", "group");
 
       // Append colored flag
       let controls = $(ct).find(".combatant-controls");
@@ -147,7 +147,7 @@ export class OseCombat {
   }
 
   static updateCombatant(combatant, data) {
-    let init = game.settings.get("ose", "initiative");
+    let init = game.settings.get("add1e", "initiative");
     // Why do you reroll ?
     if (combatant.actor.data.data.isSlow) {
       data.initiative = -789;
@@ -155,10 +155,10 @@ export class OseCombat {
     }
     if (data.initiative && init == "group") {
       let groupInit = data.initiative;
-      const cmbtGroup = combatant.getFlag("ose", "group");
+      const cmbtGroup = combatant.getFlag("add1e", "group");
       // Check if there are any members of the group with init
       game.combats.viewed.combatants.forEach((ct) => {
-        const group = ct.getFlag("ose", "group");
+        const group = ct.getFlag("add1e", "group");
         if (
           ct.initiative &&
           ct.initiative != "-789.00" &&
@@ -179,7 +179,7 @@ export class OseCombat {
       let id = $(ev.currentTarget).closest(".combatant")[0].dataset.combatantId;
       let isActive = ev.currentTarget.classList.contains('active');
       const combatant = game.combat.combatants.get(id);
-      combatant.setFlag("ose", "prepareSpell", !isActive);
+      combatant.setFlag("add1e", "prepareSpell", !isActive);
     });
     html.find(".combatant-control.move-combat").click((ev) => {
       ev.preventDefault();
@@ -187,7 +187,7 @@ export class OseCombat {
       let id = $(ev.currentTarget).closest(".combatant")[0].dataset.combatantId;
       let isActive = ev.currentTarget.classList.contains('active');
       const combatant = game.combat.combatants.get(id);
-      combatant.setFlag("ose", "moveInCombat", !isActive);
+      combatant.setFlag("add1e", "moveInCombat", !isActive);
     })
   }
 
@@ -207,7 +207,7 @@ export class OseCombat {
       }
       let id = $(ev.currentTarget).closest(".combatant")[0].dataset.combatantId;
       const combatant = game.combat.combatants.get(id);
-      combatant.setFlag("ose", "group", colors[index]);
+      combatant.setFlag("add1e", "group", colors[index]);
     });
 
     html.find('.combat-control[data-control="reroll"]').click((ev) => {
@@ -237,7 +237,7 @@ export class OseCombat {
         break;
     }
     data.flags = {
-      ose: {
+      add1e: {
         group: color,
       },
     };
@@ -257,8 +257,8 @@ export class OseCombat {
   }
 
   static async preUpdateCombat(combat, data, diff, id) {
-    let init = game.settings.get("ose", "initiative");
-    let reroll = game.settings.get("ose", "rerollInitiative");
+    let init = game.settings.get("add1e", "initiative");
+    let reroll = game.settings.get("add1e", "rerollInitiative");
     if (!data.round) {
       return;
     }

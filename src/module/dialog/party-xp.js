@@ -2,8 +2,8 @@ export class OsePartyXP extends FormApplication {
 
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
-            classes: ["ose", "dialog", "party-xp"],
-            template: "systems/ose/templates/apps/party-xp.html",
+            classes: ["add1e", "dialog", "party-xp"],
+            template: "systems/add1e/templates/apps/party-xp.html",
             width: 300,
             height: "auto",
             resizable: false,
@@ -27,7 +27,7 @@ export class OsePartyXP extends FormApplication {
      * @return {Object}
      */
     getData() {
-        const actors = this.object.entities.filter(e => e.data.type === "character" && e.data.flags.ose && e.data.flags.ose.party === true);
+        const actors = this.object.entities.filter(e => e.data.type === "character" && e.data.flags.add1e && e.data.flags.add1e.party === true);
         let data = {
             actors: actors,
             data: this.object,
@@ -52,7 +52,7 @@ export class OsePartyXP extends FormApplication {
     /* -------------------------------------------- */
 
     _calculateShare(ev) {
-        const actors = this.object.entities.filter(e => e.data.type === "character" && e.data.flags.ose && e.data.flags.ose.party === true);
+        const actors = this.object.entities.filter(e => e.data.type === "character" && e.data.flags.add1e && e.data.flags.add1e.party === true);
         const toDeal = $(ev.currentTarget.parentElement).find('input[name="total"]').val();
         const html = $(this.form);
         const value = parseFloat(toDeal) / actors.length;

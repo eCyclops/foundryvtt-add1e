@@ -1,6 +1,6 @@
 export const registerSettings = function () {
 
-  game.settings.register("ose", "initiative", {
+  game.settings.register("add1e", "initiative", {
     name: game.i18n.localize("OSE.Setting.Initiative"),
     hint: game.i18n.localize("OSE.Setting.InitiativeHint"),
     default: "group",
@@ -14,7 +14,7 @@ export const registerSettings = function () {
     onChange: _ => window.location.reload()
   });
 
-  game.settings.register("ose", "rerollInitiative", {
+  game.settings.register("add1e", "rerollInitiative", {
     name: game.i18n.localize("OSE.Setting.RerollInitiative"),
     hint: game.i18n.localize("OSE.Setting.RerollInitiativeHint"),
     default: "reset",
@@ -28,7 +28,7 @@ export const registerSettings = function () {
     }
   });
 
-  game.settings.register("ose", "ascendingAC", {
+  game.settings.register("add1e", "ascendingAC", {
     name: game.i18n.localize("OSE.Setting.AscendingAC"),
     hint: game.i18n.localize("OSE.Setting.AscendingACHint"),
     default: false,
@@ -38,7 +38,7 @@ export const registerSettings = function () {
     onChange: _ => window.location.reload()
   });
 
-  game.settings.register("ose", "morale", {
+  game.settings.register("add1e", "morale", {
     name: game.i18n.localize("OSE.Setting.Morale"),
     hint: game.i18n.localize("OSE.Setting.MoraleHint"),
     default: false,
@@ -47,7 +47,7 @@ export const registerSettings = function () {
     config: true,
   });
 
-  game.settings.register("ose", "encumbranceOption", {
+  game.settings.register("add1e", "encumbranceOption", {
     name: game.i18n.localize("OSE.Setting.Encumbrance"),
     hint: game.i18n.localize("OSE.Setting.EncumbranceHint"),
     default: "detailed",
@@ -63,7 +63,7 @@ export const registerSettings = function () {
     onChange: _ => window.location.reload()
   });
 
-  game.settings.register("ose", "significantTreasure", {
+  game.settings.register("add1e", "significantTreasure", {
     name: game.i18n.localize("OSE.Setting.SignificantTreasure"),
     hint: game.i18n.localize("OSE.Setting.SignificantTreasureHint"),
     default: 800,
@@ -73,7 +73,7 @@ export const registerSettings = function () {
     onChange: _ => window.location.reload()
   });
 
-  game.settings.register("ose", "languages", {
+  game.settings.register("add1e", "languages", {
     name: game.i18n.localize("OSE.Setting.Languages"),
     hint: game.i18n.localize("OSE.Setting.LanguagesHint"),
     default: "",

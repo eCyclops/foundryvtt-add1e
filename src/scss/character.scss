@@ -3,7 +3,7 @@
 /* ----------------------------------------- */
 /*  Basic Structure                          */
 /* ----------------------------------------- */
-.ose.sheet.actor.character {
+.add1e.sheet.actor.character {
   min-width: 450px;
   min-height: 550px;
 
@@ -110,7 +110,7 @@
     }
     .health {
       &.armor-class {
-        background: url("/systems/ose/assets/shield.png") no-repeat center;
+        background: url("/systems/add1e/assets/shield.png") no-repeat center;
         background-size: 70px;
         .shield {
           text-align: right;
@@ -143,12 +143,12 @@
         right: calc(50% + -20px);
       }
       .health-empty {
-        background: url("/systems/ose/assets/heart_empty.png") no-repeat center;
+        background: url("/systems/add1e/assets/heart_empty.png") no-repeat center;
         background-size: 70px;
         background-position: top;
       }
       .health-full {
-        background: url("/systems/ose/assets/heart_full.png") no-repeat center;
+        background: url("/systems/add1e/assets/heart_full.png") no-repeat center;
         background-size: 70px;
         background-position: bottom;
       }

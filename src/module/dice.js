@@ -10,7 +10,7 @@ export class OseDice {
 	chatMessage = true
   } = {}) {
 
-    const template = "systems/ose/templates/chat/roll-result.html";
+    const template = "systems/add1e/templates/chat/roll-result.html";
 
     let chatData = {
       user: game.user.id,
@@ -155,7 +155,7 @@ export class OseDice {
       : 0;
     result.victim = data.roll.target ? data.roll.target.data.name : null;
 
-    if (game.settings.get("ose", "ascendingAC")) {
+    if (game.settings.get("add1e", "ascendingAC")) {
       if ((roll.terms[0] != 20 && (roll.total < targetAac) || roll.terms[0] == 1)) {
         result.details = game.i18n.format(
           "OSE.messages.AttackAscendingFailure",
@@ -194,7 +194,7 @@ export class OseDice {
     speaker = null,
     form = null,
   } = {}) {
-    const template = "systems/ose/templates/chat/roll-attack.html";
+    const template = "systems/add1e/templates/chat/roll-attack.html";
 
     let chatData = {
       user: game.user.id,
@@ -291,7 +291,7 @@ export class OseDice {
 	chatMessage = true
   } = {}) {
     let rolled = false;
-    const template = "systems/ose/templates/chat/roll-dialog.html";
+    const template = "systems/add1e/templates/chat/roll-dialog.html";
     let dialogData = {
       formula: parts.join(" "),
       data: data,
@@ -364,7 +364,7 @@ export class OseDice {
 	chatMessage = true
   } = {}) {
     let rolled = false;
-    const template = "systems/ose/templates/chat/roll-dialog.html";
+    const template = "systems/add1e/templates/chat/roll-dialog.html";
     let dialogData = {
       formula: parts.join(" "),
       data: data,

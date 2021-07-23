@@ -173,7 +173,7 @@ async function copyFiles() {
     "templates",
     "module",
     "packs",
-    "ose.js",
+    "add1e.js",
     "module.json",
     "system.json",
     "template.json"

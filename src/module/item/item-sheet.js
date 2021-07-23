@@ -17,7 +17,7 @@ export class OseItemSheet extends ItemSheet {
    */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["ose", "sheet", "item"],
+      classes: ["add1e", "sheet", "item"],
       width: 520,
       height: 390,
       resizable: false,
@@ -35,7 +35,7 @@ export class OseItemSheet extends ItemSheet {
 
   /** @override */
   get template() {
-    const path = "systems/ose/templates/items/";
+    const path = "systems/add1e/templates/items/";
     return `${path}/${this.item.data.type}-sheet.html`;
   }
 

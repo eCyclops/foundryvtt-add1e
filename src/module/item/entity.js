@@ -7,12 +7,12 @@ export class OseItem extends Item {
   // Replacing default image */
   static get defaultIcons() {
     return {
-      spell: "/systems/ose/assets/default/spell.png",
-      ability: "/systems/ose/assets/default/ability.png",
-      armor: "/systems/ose/assets/default/armor.png",
-      weapon: "/systems/ose/assets/default/weapon.png",
-      item: "/systems/ose/assets/default/item.png",
-      container: "/systems/ose/assets/default/bag.png"
+      spell: "/systems/add1e/assets/default/spell.png",
+      ability: "/systems/add1e/assets/default/ability.png",
+      armor: "/systems/add1e/assets/default/armor.png",
+      weapon: "/systems/add1e/assets/default/weapon.png",
+      item: "/systems/add1e/assets/default/item.png",
+      container: "/systems/add1e/assets/default/bag.png"
     };
   }
 
@@ -293,7 +293,7 @@ export class OseItem extends Item {
     templateData.data.properties = this.getTagList();
 
     // Render the chat card template
-    const template = `systems/ose/templates/chat/item-card.html`;
+    const template = `systems/add1e/templates/chat/item-card.html`;
     const html = await renderTemplate(template, templateData);
 
     // Basic chat message data

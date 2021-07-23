@@ -31,7 +31,7 @@ Hooks.once("init", async function () {
 
   CONFIG.OSE = OSE;
 
-  game.ose = {
+  game.add1e = {
     rollItemMacro: macros.rollItemMacro,
   };
 
@@ -46,19 +46,19 @@ Hooks.once("init", async function () {
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("ose", OseActorSheetCharacter, {
+  Actors.registerSheet("add1e", OseActorSheetCharacter, {
     types: ["character"],
     makeDefault: true,
     label: "OSE.SheetClassCharacter"
   });
-  Actors.registerSheet("ose", OseActorSheetMonster, {
+  Actors.registerSheet("add1e", OseActorSheetMonster, {
     types: ["monster"],
     makeDefault: true,
     label: "OSE.SheetClassMonster"
   });
 
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("ose", OseItemSheet, {
+  Items.registerSheet("add1e", OseItemSheet, {
     makeDefault: true,
     label: "OSE.SheetClassItem"
   });
@@ -80,7 +80,7 @@ Hooks.once("setup", function () {
   }
 
   // Custom languages
-  const languages = game.settings.get("ose", "languages");
+  const languages = game.settings.get("add1e", "languages");
   if (languages != "") {
     const langArray = languages.split(',');
     langArray.forEach((l, i) => langArray[i] = l.trim())
@@ -102,26 +102,26 @@ Hooks.on("renderSidebarTab", async (object, html) => {
   if (object instanceof Settings) {
     let gamesystem = html.find("#game-details");
     // SRD Link
-    let ose = gamesystem.find('h4').last();
-    ose.append(` <sub><a href="https://oldschoolessentials.necroticgnome.com/srd/index.php">SRD<a></sub>`);
+    let add1e = gamesystem.find('h4').last();
+    add1e.append(` <sub><a href="https://oldschoolessentials.necroticgnome.com/srd/index.php">SRD<a></sub>`);
 
     // License text
-    const template = "systems/ose/templates/chat/license.html";
+    const template = "systems/add1e/templates/chat/license.html";
     const rendered = await renderTemplate(template);
     gamesystem.find(".system").append(rendered);
 
     // User guide
     let docs = html.find("button[data-action='docs']");
     const styling = "border:none;margin-right:2px;vertical-align:middle;margin-bottom:5px";
-    $(`<button data-action="userguide"><img src='/systems/ose/assets/dragon.png' width='16' height='16' style='${styling}'/>Old School Guide</button>`).insertAfter(docs);
+    $(`<button data-action="userguide"><img src='/systems/add1e/assets/dragon.png' width='16' height='16' style='${styling}'/>Old School Guide</button>`).insertAfter(docs);
     html.find('button[data-action="userguide"]').click(ev => {
-      new FrameViewer('https://mesfoliesludiques.gitlab.io/foundryvtt-ose', { resizable: true }).render(true);
+      new FrameViewer('https://ecyclops.github.com/foundryvtt-add1e', { resizable: true }).render(true);
     });
   }
 });
 
 Hooks.on("preCreateCombatant", (combat, data, options, id) => {
-  let init = game.settings.get("ose", "initiative");
+  let init = game.settings.get("add1e", "initiative");
   if (init == "group") {
     OseCombat.addCombatant(combat, data, options, id);
   }
