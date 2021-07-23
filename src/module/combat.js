@@ -1,4 +1,4 @@
-export class OseCombat {
+export class ADD1eCombat {
   static STATUS_SLOW = -789;
   static STATUS_DIZZY = -790;
 
@@ -16,7 +16,7 @@ export class OseCombat {
     Object.keys(groups).forEach((group) => {
       let roll = new Roll("1d6").evaluate({async: false});
       roll.toMessage({
-        flavor: game.i18n.format('OSE.roll.initiative', { group: CONFIG["OSE"].colors[group] }),
+        flavor: game.i18n.format('ADD1E.roll.initiative', { group: CONFIG["ADD1E"].colors[group] }),
       });
       groups[group].initiative = roll.total;
     });
@@ -27,7 +27,7 @@ export class OseCombat {
         return;
       }
       if (data.combatants[i].actor.data.data.isSlow) {
-        data.combatants[i].update({initiative: OseCombat.STATUS_SLOW});
+        data.combatants[i].update({initiative: ADD1eCombat.STATUS_SLOW});
       } else {
         const group = data.combatants[i].getFlag("add1e", "group");
         data.combatants[i].update({initiative: groups[group].initiative});
@@ -54,7 +54,7 @@ export class OseCombat {
       const roll = c.getInitiativeRoll(cf);
       let value = roll.total;
       if (combat.settings.skipDefeated && c.defeated) {
-        value = OseCombat.STATUS_DIZZY;
+        value = ADD1eCombat.STATUS_DIZZY;
       }
       updates.push({ _id: c.id, initiative: value });
 
@@ -71,7 +71,7 @@ export class OseCombat {
           token: c.token?.id,
           alias: c.name
         },
-        flavor: game.i18n.format('OSE.roll.individualInit', { name: c.token.name }),
+        flavor: game.i18n.format('ADD1E.roll.individualInit', { name: c.token.name }),
         flags: {"add1e.initiativeRoll": true}
       }, {});
       const chatData = roll.toMessage(messageData, { rollMode: c.hidden && (rollMode === "roll") ? "gmroll" : rollMode, create: false });
@@ -89,11 +89,11 @@ export class OseCombat {
   static format(object, html, user) {
     html.find(".initiative").each((_, span) => {
       span.innerHTML =
-        span.innerHTML == `${OseCombat.STATUS_SLOW}`
+        span.innerHTML == `${ADD1eCombat.STATUS_SLOW}`
           ? '<i class="fas fa-weight-hanging"></i>'
           : span.innerHTML;
       span.innerHTML =
-        span.innerHTML == `${OseCombat.STATUS_DIZZY}`
+        span.innerHTML == `${ADD1eCombat.STATUS_DIZZY}`
           ? '<i class="fas fa-dizzy"></i>'
           : span.innerHTML;
     });
@@ -113,7 +113,7 @@ export class OseCombat {
         `<a class='combatant-control prepare-spell ${spellActive}'><i class='fas fa-magic'></i></a>`
       );
     });
-    OseCombat.announceListener(html);
+    ADD1eCombat.announceListener(html);
 
     let init = game.settings.get("add1e", "initiative") === "group";
     if (!init) {
@@ -140,10 +140,10 @@ export class OseCombat {
       // Append colored flag
       let controls = $(ct).find(".combatant-controls");
       controls.prepend(
-        `<a class='combatant-control flag' style='color:${color}' title="${CONFIG.OSE.colors[color]}"><i class='fas fa-flag'></i></a>`
+        `<a class='combatant-control flag' style='color:${color}' title="${CONFIG.ADD1E.colors[color]}"><i class='fas fa-flag'></i></a>`
       );
     });
-    OseCombat.addListeners(html);
+    ADD1eCombat.addListeners(html);
   }
 
   static updateCombatant(combatant, data) {
@@ -198,7 +198,7 @@ export class OseCombat {
         return;
       }
       let currentColor = ev.currentTarget.style.color;
-      let colors = Object.keys(CONFIG.OSE.colors);
+      let colors = Object.keys(CONFIG.ADD1E.colors);
       let index = colors.indexOf(currentColor);
       if (index + 1 == colors.length) {
         index = 0;
@@ -215,7 +215,7 @@ export class OseCombat {
         return;
       }
       let data = {};
-      OseCombat.rollInitiative(game.combat, data);
+      ADD1eCombat.rollInitiative(game.combat, data);
       game.combat.update({ data: data }).then(() => {
         game.combat.setupTurns();
       });
@@ -252,7 +252,7 @@ export class OseCombat {
     options.unshift({
       name: "Set Active",
       icon: '<i class="fas fa-star-of-life"></i>',
-      callback: OseCombat.activateCombatant
+      callback: ADD1eCombat.activateCombatant
     });
   }
 
@@ -264,16 +264,16 @@ export class OseCombat {
     }
     if (data.round !== 1) {
       if (reroll === "reset") {
-        OseCombat.resetInitiative(combat, data, diff, id);
+        ADD1eCombat.resetInitiative(combat, data, diff, id);
         return;
       } else if (reroll === "keep") {
         return;
       }
     }
     if (init === "group") {
-      OseCombat.rollInitiative(combat, data, diff, id);
+      ADD1eCombat.rollInitiative(combat, data, diff, id);
     } else if (init === "individual") {
-      OseCombat.individualInitiative(combat, data, diff, id);
+      ADD1eCombat.individualInitiative(combat, data, diff, id);
     }
   }
 }

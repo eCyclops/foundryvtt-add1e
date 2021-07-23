@@ -10,7 +10,7 @@
  * @param {number} slot     The hotbar slot to use
  * @returns {Promise}
  */
-export async function createOseMacro(data, slot) {
+export async function createADD1eMacro(data, slot) {
     if ( data.type !== "Item" ) return;
     if (!( "data" in data ) ) return ui.notifications.warn("You can only create macro buttons for owned Items");
     const item = data.data;

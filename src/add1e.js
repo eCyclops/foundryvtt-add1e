@@ -1,18 +1,18 @@
 // Import Modules
-import { OseItemSheet } from "./module/item/item-sheet.js";
-import { OseActorSheetCharacter } from "./module/actor/character-sheet.js";
-import { OseActorSheetMonster } from "./module/actor/monster-sheet.js";
+import { ADD1eItemSheet } from "./module/item/item-sheet.js";
+import { ADD1eActorSheetCharacter } from "./module/actor/character-sheet.js";
+import { ADD1eActorSheetMonster } from "./module/actor/monster-sheet.js";
 import { preloadHandlebarsTemplates } from "./module/preloadTemplates.js";
-import { OseActor } from "./module/actor/entity.js";
-import { OseItem } from "./module/item/entity.js";
-import { OSE } from "./module/config.js";
+import { ADD1eActor } from "./module/actor/entity.js";
+import { ADD1eItem } from "./module/item/entity.js";
+import { ADD1E } from "./module/config.js";
 import { registerSettings } from "./module/settings.js";
 import { registerHelpers } from "./module/helpers.js";
 import * as chat from "./module/chat.js";
 import * as treasure from "./module/treasure.js";
 import * as macros from "./module/macros.js";
 import * as party from "./module/party.js";
-import { OseCombat } from "./module/combat.js";
+import { ADD1eCombat } from "./module/combat.js";
 import * as renderList from "./module/renderList.js";
 
 /* -------------------------------------------- */
@@ -29,7 +29,7 @@ Hooks.once("init", async function () {
     decimals: 2,
   };
 
-  CONFIG.OSE = OSE;
+  CONFIG.ADD1E = ADD1E;
 
   game.add1e = {
     rollItemMacro: macros.rollItemMacro,
@@ -41,26 +41,26 @@ Hooks.once("init", async function () {
   // Register custom system settings
   registerSettings();
 
-  CONFIG.Actor.documentClass = OseActor;
-  CONFIG.Item.documentClass = OseItem;
+  CONFIG.Actor.documentClass = ADD1eActor;
+  CONFIG.Item.documentClass = ADD1eItem;
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("add1e", OseActorSheetCharacter, {
+  Actors.registerSheet("add1e", ADD1eActorSheetCharacter, {
     types: ["character"],
     makeDefault: true,
-    label: "OSE.SheetClassCharacter"
+    label: "ADD1E.SheetClassCharacter"
   });
-  Actors.registerSheet("add1e", OseActorSheetMonster, {
+  Actors.registerSheet("add1e", ADD1eActorSheetMonster, {
     types: ["monster"],
     makeDefault: true,
-    label: "OSE.SheetClassMonster"
+    label: "ADD1E.SheetClassMonster"
   });
 
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("add1e", OseItemSheet, {
+  Items.registerSheet("add1e", ADD1eItemSheet, {
     makeDefault: true,
-    label: "OSE.SheetClassItem"
+    label: "ADD1E.SheetClassItem"
   });
 
   await preloadHandlebarsTemplates();
@@ -73,7 +73,7 @@ Hooks.once("setup", function () {
   // Localize CONFIG objects once up-front
   const toLocalize = ["saves_short", "saves_long", "scores", "armor", "colors", "tags"];
   for (let o of toLocalize) {
-    CONFIG.OSE[o] = Object.entries(CONFIG.OSE[o]).reduce((obj, e) => {
+    CONFIG.ADD1E[o] = Object.entries(CONFIG.ADD1E[o]).reduce((obj, e) => {
       obj[e[0]] = game.i18n.localize(e[1]);
       return obj;
     }, {});
@@ -84,13 +84,13 @@ Hooks.once("setup", function () {
   if (languages != "") {
     const langArray = languages.split(',');
     langArray.forEach((l, i) => langArray[i] = l.trim())
-    CONFIG.OSE.languages = langArray;
+    CONFIG.ADD1E.languages = langArray;
   }
 });
 
 Hooks.once("ready", async () => {
   Hooks.on("hotbarDrop", (bar, data, slot) =>
-    macros.createOseMacro(data, slot)
+    macros.createADD1eMacro(data, slot)
   );
 });
 
@@ -123,16 +123,16 @@ Hooks.on("renderSidebarTab", async (object, html) => {
 Hooks.on("preCreateCombatant", (combat, data, options, id) => {
   let init = game.settings.get("add1e", "initiative");
   if (init == "group") {
-    OseCombat.addCombatant(combat, data, options, id);
+    ADD1eCombat.addCombatant(combat, data, options, id);
   }
 });
 
-Hooks.on("updateCombatant", OseCombat.updateCombatant);
-Hooks.on("renderCombatTracker", OseCombat.format);
-Hooks.on("preUpdateCombat", OseCombat.preUpdateCombat);
-Hooks.on("getCombatTrackerEntryContext", OseCombat.addContextEntry);
+Hooks.on("updateCombatant", ADD1eCombat.updateCombatant);
+Hooks.on("renderCombatTracker", ADD1eCombat.format);
+Hooks.on("preUpdateCombat", ADD1eCombat.preUpdateCombat);
+Hooks.on("getCombatTrackerEntryContext", ADD1eCombat.addContextEntry);
 
-Hooks.on("renderChatLog", (app, html, data) => OseItem.chatListeners(html));
+Hooks.on("renderChatLog", (app, html, data) => ADD1eItem.chatListeners(html));
 Hooks.on("getChatLogEntryContext", chat.addChatMessageContextOptions);
 Hooks.on("renderChatMessage", chat.addChatMessageButtons);
 Hooks.on("renderRollTableConfig", treasure.augmentTable);

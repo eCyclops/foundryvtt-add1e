@@ -21,7 +21,7 @@ export const augmentTable = (table, html, data) => {
     html.find(".result-weight").first().text("Chance");
 
     // Replace Roll button
-    const roll = `<button class="roll-treasure" type="button"><i class="fas fa-gem"></i> ${game.i18n.localize('OSE.table.treasure.roll')}</button>`;
+    const roll = `<button class="roll-treasure" type="button"><i class="fas fa-gem"></i> ${game.i18n.localize('ADD1E.table.treasure.roll')}</button>`;
     html.find(".sheet-footer .roll").replaceWith(roll);
   }
 

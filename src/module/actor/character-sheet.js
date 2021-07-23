@@ -1,12 +1,12 @@
-import { OseActor } from "./entity.js";
-import { OseActorSheet } from "./actor-sheet.js";
-import { OseCharacterModifiers } from "../dialog/character-modifiers.js";
-import { OseCharacterCreator } from "../dialog/character-creation.js";
+import { ADD1eActor } from "./entity.js";
+import { ADD1eActorSheet } from "./actor-sheet.js";
+import { ADD1eCharacterModifiers } from "../dialog/character-modifiers.js";
+import { ADD1eCharacterCreator } from "../dialog/character-creation.js";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
  */
-export class OseActorSheetCharacter extends OseActorSheet {
+export class ADD1eActorSheetCharacter extends ADD1eActorSheet {
   constructor(...args) {
     super(...args);
   }
@@ -101,7 +101,7 @@ export class OseActorSheetCharacter extends OseActorSheet {
   }
 
   generateScores() {
-    new OseCharacterCreator(this.actor, {
+    new ADD1eCharacterCreator(this.actor, {
       top: this.position.top + 40,
       left: this.position.left + (this.position.width - 400) / 2,
     }).render(true);
@@ -120,7 +120,7 @@ export class OseActorSheetCharacter extends OseActorSheet {
 
 
   async _chooseLang() {
-    let choices = CONFIG.OSE.languages;
+    let choices = CONFIG.ADD1E.languages;
 
     let templateData = { choices: choices },
       dlg = await renderTemplate(
@@ -134,7 +134,7 @@ export class OseActorSheetCharacter extends OseActorSheet {
         content: dlg,
         buttons: {
           ok: {
-            label: game.i18n.localize("OSE.Ok"),
+            label: game.i18n.localize("ADD1E.Ok"),
             icon: '<i class="fas fa-check"></i>',
             callback: (html) => {
               resolve({
@@ -144,7 +144,7 @@ export class OseActorSheetCharacter extends OseActorSheet {
           },
           cancel: {
             icon: '<i class="fas fa-times"></i>',
-            label: game.i18n.localize("OSE.Cancel"),
+            label: game.i18n.localize("ADD1E.Cancel"),
           },
         },
         default: "ok",
@@ -156,7 +156,7 @@ export class OseActorSheetCharacter extends OseActorSheet {
     const data = this.actor.data.data;
     let update = duplicate(data[table]);
     this._chooseLang().then((dialogInput) => {
-      const name = CONFIG.OSE.languages[dialogInput.choice];
+      const name = CONFIG.ADD1E.languages[dialogInput.choice];
       if (update.value) {
         update.value.push(name);
       } else {
@@ -187,7 +187,7 @@ export class OseActorSheetCharacter extends OseActorSheet {
 
   _onShowModifiers(event) {
     event.preventDefault();
-    new OseCharacterModifiers(this.actor, {
+    new ADD1eCharacterModifiers(this.actor, {
       top: this.position.top + 40,
       left: this.position.left + (this.position.width - 400) / 2,
     }).render(true);

@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
-import { OseActor } from '../actor/entity.js';
+import { ADD1eActor } from '../actor/entity.js';
 
-export class OseEntityTweaks extends FormApplication {
+export class ADD1eEntityTweaks extends FormApplication {
   static get defaultOptions() {
     const options = super.defaultOptions;
     options.id = 'sheet-tweaks';
@@ -18,7 +18,7 @@ export class OseEntityTweaks extends FormApplication {
    * @type {String}
    */
   get title() {
-    return `${this.object.name}: ${game.i18n.localize('OSE.dialog.tweaks')}`;
+    return `${this.object.name}: ${game.i18n.localize('ADD1E.dialog.tweaks')}`;
   }
 
   /* -------------------------------------------- */
@@ -33,7 +33,7 @@ export class OseEntityTweaks extends FormApplication {
       data.isCharacter = true;
     }
     data.user = game.user;
-    data.config = { ...CONFIG.OSE, ascendingAC: game.settings.get("add1e", "ascendingAC") };
+    data.config = { ...CONFIG.ADD1E, ascendingAC: game.settings.get("add1e", "ascendingAC") };
     return data;
   }
 

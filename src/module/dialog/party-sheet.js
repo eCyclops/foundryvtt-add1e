@@ -1,6 +1,6 @@
-import { OsePartyXP } from "./party-xp.js";
+import { ADD1ePartyXP } from "./party-xp.js";
 
-export class OsePartySheet extends FormApplication {
+export class ADD1ePartySheet extends FormApplication {
 
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -19,7 +19,7 @@ export class OsePartySheet extends FormApplication {
    * @type {String}
    */
   get title() {
-    return game.i18n.localize("OSE.dialog.partysheet");
+    return game.i18n.localize("ADD1E.dialog.partysheet");
   }
 
   /* -------------------------------------------- */
@@ -34,7 +34,7 @@ export class OsePartySheet extends FormApplication {
     };
     let data = {
       data: this.object,
-      config: CONFIG.OSE,
+      config: CONFIG.ADD1E,
       user: game.user,
       settings: settings
     };
@@ -55,7 +55,7 @@ export class OsePartySheet extends FormApplication {
   /* -------------------------------------------- */
 
   async _dealXP(ev) {
-    new OsePartyXP(this.object, {}).render(true);
+    new ADD1ePartyXP(this.object, {}).render(true);
   }
 
   async _selectActors(ev) {
@@ -66,12 +66,12 @@ export class OsePartySheet extends FormApplication {
     }
     const content = await renderTemplate(template, templateData);
     new Dialog({
-      title: game.i18n.localize("OSE.dialog.partyselect"),
+      title: game.i18n.localize("ADD1E.dialog.partyselect"),
       content: content,
       buttons: {
         set: {
           icon: '<i class="fas fa-save"></i>',
-          label: game.i18n.localize("OSE.Update"),
+          label: game.i18n.localize("ADD1E.Update"),
           callback: async (html) => {
             let checks = html.find("input[data-action='select-actor']");
             await Promise.all(checks.map(async (_, c) => {

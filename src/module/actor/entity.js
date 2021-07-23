@@ -1,7 +1,7 @@
-import { OseDice } from "../dice.js";
-import { OseItem } from "../item/entity.js";
+import { ADD1eDice } from "../dice.js";
+import { ADD1eItem } from "../item/entity.js";
 
-export class OseActor extends Actor {
+export class ADD1eActor extends Actor {
   /**
    * Extends data from base Actor class
    */
@@ -50,7 +50,7 @@ export class OseActor extends Actor {
   async createEmbeddedDocuments(embeddedName, data = [], context = {}) {
     data.map((item) => {
       if (item.img === undefined) {
-        item.img = OseItem.defaultIcons[item.type];
+        item.img = ADD1eItem.defaultIcons[item.type];
       }
     });
     return super.createEmbeddedDocuments(embeddedName, data, context);
@@ -71,7 +71,7 @@ export class OseActor extends Actor {
     }).then(() => {
       const speaker = ChatMessage.getSpeaker({ actor: this });
       ChatMessage.create({
-        content: game.i18n.format("OSE.messages.GetExperience", {
+        content: game.i18n.format("ADD1E.messages.GetExperience", {
           name: this.name,
           value: modified,
         }),
@@ -100,18 +100,18 @@ export class OseActor extends Actor {
   generateSave(hd) {
     let saves = {};
     for (let i = 0; i <= hd; i++) {
-      let tmp = CONFIG.OSE.monster_saves[i];
+      let tmp = CONFIG.ADD1E.monster_saves[i];
       if (tmp) {
         saves = tmp;
       }
     }
     // Compute Thac0
     let thac0 = 20;
-    Object.keys(CONFIG.OSE.monster_thac0).forEach((k) => {
+    Object.keys(CONFIG.ADD1E.monster_thac0).forEach((k) => {
       if (parseInt(hd) < parseInt(k)) {
         return;
       }
-      thac0 = CONFIG.OSE.monster_thac0[k];
+      thac0 = CONFIG.ADD1E.monster_thac0[k];
     });
     this.update({
       "data.thac0.value": thac0,
@@ -152,7 +152,7 @@ export class OseActor extends Actor {
   }
 
   rollSave(save, options = {}) {
-    const label = game.i18n.localize(`OSE.saves.${save}.long`);
+    const label = game.i18n.localize(`ADD1E.saves.${save}.long`);
     const rollParts = ["1d20"];
 
     const data = {
@@ -163,13 +163,13 @@ export class OseActor extends Actor {
         magic:
           this.data.type === "character" ? this.data.data.scores.wis.mod : 0,
       },
-      details: game.i18n.format("OSE.roll.details.save", { save: label }),
+      details: game.i18n.format("ADD1E.roll.details.save", { save: label }),
     };
 
     let skip = options?.event?.ctrlKey || options.fastForward;
 
     const rollMethod =
-      this.data.type == "character" ? OseDice.RollSave : OseDice.Roll;
+      this.data.type == "character" ? ADD1eDice.RollSave : ADD1eDice.Roll;
 
     // Roll and return
     return rollMethod({
@@ -178,8 +178,8 @@ export class OseActor extends Actor {
       data: data,
       skipDialog: skip,
       speaker: ChatMessage.getSpeaker({ actor: this }),
-      flavor: game.i18n.format("OSE.roll.save", { save: label }),
-      title: game.i18n.format("OSE.roll.save", { save: label }),
+      flavor: game.i18n.format("ADD1E.roll.save", { save: label }),
+      title: game.i18n.format("ADD1E.roll.save", { save: label }),
       chatMessage: options.chatMessage,
     });
   }
@@ -196,19 +196,19 @@ export class OseActor extends Actor {
     };
 
     // Roll and return
-    return OseDice.Roll({
+    return ADD1eDice.Roll({
       event: options.event,
       parts: rollParts,
       data: data,
       skipDialog: true,
       speaker: ChatMessage.getSpeaker({ actor: this }),
-      flavor: game.i18n.localize("OSE.roll.morale"),
-      title: game.i18n.localize("OSE.roll.morale"),
+      flavor: game.i18n.localize("ADD1E.roll.morale"),
+      title: game.i18n.localize("ADD1E.roll.morale"),
     });
   }
 
   rollLoyalty(options = {}) {
-    const label = game.i18n.localize(`OSE.roll.loyalty`);
+    const label = game.i18n.localize(`ADD1E.roll.loyalty`);
     const rollParts = ["2d6"];
 
     const data = {
@@ -220,7 +220,7 @@ export class OseActor extends Actor {
     };
 
     // Roll and return
-    return OseDice.Roll({
+    return ADD1eDice.Roll({
       event: options.event,
       parts: rollParts,
       data: data,
@@ -239,19 +239,19 @@ export class OseActor extends Actor {
       roll: {
         type: "table",
         table: {
-          2: game.i18n.format("OSE.reaction.Hostile", {
+          2: game.i18n.format("ADD1E.reaction.Hostile", {
             name: this.data.name,
           }),
-          3: game.i18n.format("OSE.reaction.Unfriendly", {
+          3: game.i18n.format("ADD1E.reaction.Unfriendly", {
             name: this.data.name,
           }),
-          6: game.i18n.format("OSE.reaction.Neutral", {
+          6: game.i18n.format("ADD1E.reaction.Neutral", {
             name: this.data.name,
           }),
-          9: game.i18n.format("OSE.reaction.Indifferent", {
+          9: game.i18n.format("ADD1E.reaction.Indifferent", {
             name: this.data.name,
           }),
-          12: game.i18n.format("OSE.reaction.Friendly", {
+          12: game.i18n.format("ADD1E.reaction.Friendly", {
             name: this.data.name,
           }),
         },
@@ -261,19 +261,19 @@ export class OseActor extends Actor {
     let skip = options.event && options.event.ctrlKey;
 
     // Roll and return
-    return OseDice.Roll({
+    return ADD1eDice.Roll({
       event: options.event,
       parts: rollParts,
       data: data,
       skipDialog: skip,
       speaker: ChatMessage.getSpeaker({ actor: this }),
-      flavor: game.i18n.localize("OSE.reaction.check"),
-      title: game.i18n.localize("OSE.reaction.check"),
+      flavor: game.i18n.localize("ADD1E.reaction.check"),
+      title: game.i18n.localize("ADD1E.reaction.check"),
     });
   }
 
   rollCheck(score, options = {}) {
-    const label = game.i18n.localize(`OSE.scores.${score}.long`);
+    const label = game.i18n.localize(`ADD1E.scores.${score}.long`);
     const rollParts = ["1d20"];
 
     const data = {
@@ -283,7 +283,7 @@ export class OseActor extends Actor {
         target: this.data.data.scores[score].value,
       },
 
-      details: game.i18n.format("OSE.roll.details.attribute", {
+      details: game.i18n.format("ADD1E.roll.details.attribute", {
         score: label,
       }),
     };
@@ -291,20 +291,20 @@ export class OseActor extends Actor {
     let skip = options?.event?.ctrlKey || options.fastForward;
 
     // Roll and return
-    return OseDice.Roll({
+    return ADD1eDice.Roll({
       event: options.event,
       parts: rollParts,
       data: data,
       skipDialog: skip,
       speaker: ChatMessage.getSpeaker({ actor: this }),
-      flavor: game.i18n.format("OSE.roll.attribute", { attribute: label }),
-      title: game.i18n.format("OSE.roll.attribute", { attribute: label }),
+      flavor: game.i18n.format("ADD1E.roll.attribute", { attribute: label }),
+      title: game.i18n.format("ADD1E.roll.attribute", { attribute: label }),
       chatMessage: options.chatMessage,
     });
   }
 
   rollHitDice(options = {}) {
-    const label = game.i18n.localize(`OSE.roll.hd`);
+    const label = game.i18n.localize(`ADD1E.roll.hd`);
     const rollParts = [this.data.data.hp.hd];
     if (this.data.type == "character") {
       rollParts.push(this.data.data.scores.con.mod);
@@ -318,7 +318,7 @@ export class OseActor extends Actor {
     };
 
     // Roll and return
-    return OseDice.Roll({
+    return ADD1eDice.Roll({
       event: options.event,
       parts: rollParts,
       data: data,
@@ -349,19 +349,19 @@ export class OseActor extends Actor {
     };
 
     // Roll and return
-    return OseDice.Roll({
+    return ADD1eDice.Roll({
       event: options.event,
       parts: rollParts,
       data: data,
       skipDialog: true,
       speaker: ChatMessage.getSpeaker({ actor: this }),
-      flavor: game.i18n.format("OSE.roll.appearing", { type: label }),
-      title: game.i18n.format("OSE.roll.appearing", { type: label }),
+      flavor: game.i18n.format("ADD1E.roll.appearing", { type: label }),
+      title: game.i18n.format("ADD1E.roll.appearing", { type: label }),
     });
   }
 
   rollExploration(expl, options = {}) {
-    const label = game.i18n.localize(`OSE.exploration.${expl}.long`);
+    const label = game.i18n.localize(`ADD1E.exploration.${expl}.long`);
     const rollParts = ["1d6"];
 
     const data = {
@@ -371,7 +371,7 @@ export class OseActor extends Actor {
         target: this.data.data.exploration[expl],
         blindroll: true,
       },
-      details: game.i18n.format("OSE.roll.details.exploration", {
+      details: game.i18n.format("ADD1E.roll.details.exploration", {
         expl: label,
       }),
     };
@@ -379,14 +379,14 @@ export class OseActor extends Actor {
     let skip = options.event && options.event.ctrlKey;
 
     // Roll and return
-    return OseDice.Roll({
+    return ADD1eDice.Roll({
       event: options.event,
       parts: rollParts,
       data: data,
       skipDialog: skip,
       speaker: ChatMessage.getSpeaker({ actor: this }),
-      flavor: game.i18n.format("OSE.roll.exploration", { exploration: label }),
-      title: game.i18n.format("OSE.roll.exploration", { exploration: label }),
+      flavor: game.i18n.format("ADD1E.roll.exploration", { exploration: label }),
+      title: game.i18n.format("ADD1E.roll.exploration", { exploration: label }),
     });
   }
 
@@ -414,14 +414,14 @@ export class OseActor extends Actor {
     }
 
     // Damage roll
-    OseDice.Roll({
+    ADD1eDice.Roll({
       event: options.event,
       parts: dmgParts,
       data: rollData,
       skipDialog: true,
       speaker: ChatMessage.getSpeaker({ actor: this }),
-      flavor: `${attData.label} - ${game.i18n.localize("OSE.Damage")}`,
-      title: `${attData.label} - ${game.i18n.localize("OSE.Damage")}`,
+      flavor: `${attData.label} - ${game.i18n.localize("ADD1E.Damage")}`,
+      title: `${attData.label} - ${game.i18n.localize("ADD1E.Damage")}`,
     });
   }
 
@@ -443,13 +443,13 @@ export class OseActor extends Actor {
     const data = this.data.data;
     const rollParts = ["1d20"];
     const dmgParts = [];
-    let label = game.i18n.format("OSE.roll.attacks", {
+    let label = game.i18n.format("ADD1E.roll.attacks", {
       name: this.data.name,
     });
     if (!attData.item) {
       dmgParts.push("1d6");
     } else {
-      label = game.i18n.format("OSE.roll.attacksWith", {
+      label = game.i18n.format("ADD1E.roll.attacksWith", {
         name: attData.item.name,
       });
       dmgParts.push(attData.item.data.damage);
@@ -490,7 +490,7 @@ export class OseActor extends Actor {
     };
 
     // Roll and return
-    return OseDice.Roll({
+    return ADD1eDice.Roll({
       event: options.event,
       parts: rollParts,
       data: rollData,
@@ -696,27 +696,27 @@ export class OseActor extends Actor {
       16: 2,
       18: 3,
     };
-    data.scores.str.mod = OseActor._valueFromTable(
+    data.scores.str.mod = ADD1eActor._valueFromTable(
       standard,
       data.scores.str.value
     );
-    data.scores.int.mod = OseActor._valueFromTable(
+    data.scores.int.mod = ADD1eActor._valueFromTable(
       standard,
       data.scores.int.value
     );
-    data.scores.dex.mod = OseActor._valueFromTable(
+    data.scores.dex.mod = ADD1eActor._valueFromTable(
       standard,
       data.scores.dex.value
     );
-    data.scores.cha.mod = OseActor._valueFromTable(
+    data.scores.cha.mod = ADD1eActor._valueFromTable(
       standard,
       data.scores.cha.value
     );
-    data.scores.wis.mod = OseActor._valueFromTable(
+    data.scores.wis.mod = ADD1eActor._valueFromTable(
       standard,
       data.scores.wis.value
     );
-    data.scores.con.mod = OseActor._valueFromTable(
+    data.scores.con.mod = ADD1eActor._valueFromTable(
       standard,
       data.scores.con.value
     );
@@ -731,11 +731,11 @@ export class OseActor extends Actor {
       16: 1,
       18: 2,
     };
-    data.scores.dex.init = OseActor._valueFromTable(
+    data.scores.dex.init = ADD1eActor._valueFromTable(
       capped,
       data.scores.dex.value
     );
-    data.scores.cha.npc = OseActor._valueFromTable(
+    data.scores.cha.npc = ADD1eActor._valueFromTable(
       capped,
       data.scores.cha.value
     );
@@ -750,30 +750,30 @@ export class OseActor extends Actor {
       16: 4,
       18: 5,
     };
-    data.exploration.odMod = OseActor._valueFromTable(
+    data.exploration.odMod = ADD1eActor._valueFromTable(
       od,
       data.scores.str.value
     );
 
     const literacy = {
       0: "",
-      3: "OSE.Illiterate",
-      6: "OSE.LiteracyBasic",
-      9: "OSE.Literate",
+      3: "ADD1E.Illiterate",
+      6: "ADD1E.LiteracyBasic",
+      9: "ADD1E.Literate",
     };
-    data.languages.literacy = OseActor._valueFromTable(
+    data.languages.literacy = ADD1eActor._valueFromTable(
       literacy,
       data.scores.int.value
     );
 
     const spoken = {
-      0: "OSE.NativeBroken",
-      3: "OSE.Native",
-      13: "OSE.NativePlus1",
-      16: "OSE.NativePlus2",
-      18: "OSE.NativePlus3",
+      0: "ADD1E.NativeBroken",
+      3: "ADD1E.Native",
+      13: "ADD1E.NativePlus1",
+      16: "ADD1E.NativePlus2",
+      18: "ADD1E.NativePlus3",
     };
-    data.languages.spoken = OseActor._valueFromTable(
+    data.languages.spoken = ADD1eActor._valueFromTable(
       spoken,
       data.scores.int.value
     );

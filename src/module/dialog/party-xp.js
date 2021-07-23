@@ -1,4 +1,4 @@
-export class OsePartyXP extends FormApplication {
+export class ADD1ePartyXP extends FormApplication {
 
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
@@ -17,7 +17,7 @@ export class OsePartyXP extends FormApplication {
      * @type {String}
      */
     get title() {
-        return game.i18n.localize("OSE.dialog.xp.deal");
+        return game.i18n.localize("ADD1E.dialog.xp.deal");
     }
 
     /* -------------------------------------------- */
@@ -31,7 +31,7 @@ export class OsePartyXP extends FormApplication {
         let data = {
             actors: actors,
             data: this.object,
-            config: CONFIG.OSE,
+            config: CONFIG.ADD1E,
             user: game.user,
             settings: settings
         };

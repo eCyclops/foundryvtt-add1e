@@ -1,7 +1,7 @@
-import { OseActor } from "../actor/entity.js";
-import { OseDice } from "../dice.js";
+import { ADD1eActor } from "../actor/entity.js";
+import { ADD1eDice } from "../dice.js";
 
-export class OseCharacterCreator extends FormApplication {
+export class ADD1eCharacterCreator extends FormApplication {
   static get defaultOptions() {
     const options = super.defaultOptions;
     (options.classes = ["add1e", "dialog", "creator"]),
@@ -19,7 +19,7 @@ export class OseCharacterCreator extends FormApplication {
    * @type {String}
    */
   get title() {
-    return `${this.object.name}: ${game.i18n.localize("OSE.dialog.generator")}`;
+    return `${this.object.name}: ${game.i18n.localize("ADD1E.dialog.generator")}`;
   }
 
   /* -------------------------------------------- */
@@ -31,7 +31,7 @@ export class OseCharacterCreator extends FormApplication {
   getData() {
     let data = foundry.utils.deepClone(this.object.data);
     data.user = game.user;
-    data.config = CONFIG.OSE;
+    data.config = CONFIG.ADD1E;
     this.counters = {
       str: 0,
       wis: 0,
@@ -89,7 +89,7 @@ export class OseCharacterCreator extends FormApplication {
     this.counters[score]++;
 
     const label =
-      score != "gold" ? game.i18n.localize(`OSE.scores.${score}.long`) : "Gold";
+      score != "gold" ? game.i18n.localize(`ADD1E.scores.${score}.long`) : "Gold";
     const rollParts = ["3d6"];
     const data = {
       roll: {
@@ -100,17 +100,17 @@ export class OseCharacterCreator extends FormApplication {
       return new Roll(rollParts[0]).evaluate({ async: false });
     }
     // Roll and return
-    return OseDice.Roll({
+    return ADD1eDice.Roll({
       event: options.event,
       parts: rollParts,
       data: data,
       skipDialog: true,
       speaker: ChatMessage.getSpeaker({ actor: this }),
-      flavor: game.i18n.format("OSE.dialog.generateScore", {
+      flavor: game.i18n.format("ADD1E.dialog.generateScore", {
         score: label,
         count: this.counters[score],
       }),
-      title: game.i18n.format("OSE.dialog.generateScore", {
+      title: game.i18n.format("ADD1E.dialog.generateScore", {
         score: label,
         count: this.counters[score],
       }),
@@ -121,9 +121,9 @@ export class OseCharacterCreator extends FormApplication {
     // Gather scores
     const speaker = ChatMessage.getSpeaker({ actor: this });
     const templateData = {
-      config: CONFIG.OSE,
+      config: CONFIG.ADD1E,
       scores: this.scores,
-      title: game.i18n.localize("OSE.dialog.generator"),
+      title: game.i18n.localize("ADD1E.dialog.generator"),
       stats: this.object.data.stats,
       gold: this.gold,
     };

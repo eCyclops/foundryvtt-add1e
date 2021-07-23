@@ -13,27 +13,27 @@
         </div>
 
         <div class="card-buttons">
-            {{#if hasAttack}}<button data-action="attack">{{ localize "OSE.Attack" }}</button>{{/if}}
+            {{#if hasAttack}}<button data-action="attack">{{ localize "ADD1E.Attack" }}</button>{{/if}}
 
             {{#if hasDamage}}
             <button data-action="damage">
                 {{#if isHealing}}
-                {{ localize "OSE.Healing" }}
+                {{ localize "ADD1E.Healing" }}
                 {{else}}
-                {{localize "OSE.Damage" }}
+                {{localize "ADD1E.Damage" }}
                 {{/if}}
             </button>
             {{/if}}
 
             {{#if data.save}}
             <button data-action="save" data-save="{{data.save}}" disabled>
-                {{lookup config.saves_long data.save}} - {{localize "OSE.spells.Save"}}
+                {{lookup config.saves_long data.save}} - {{localize "ADD1E.spells.Save"}}
             </button>
             {{/if}}
 
             {{#if data.roll}}
-            <button data-action="formula">{{ localize "OSE.Roll"}} {{data.roll}} {{#if data.blindroll}}({{localize
-                'OSE.items.BlindRoll'}}){{/if}}</button>
+            <button data-action="formula">{{ localize "ADD1E.Roll"}} {{data.roll}} {{#if data.blindroll}}({{localize
+                'ADD1E.items.BlindRoll'}}){{/if}}</button>
             {{/if}}
         </div>
 

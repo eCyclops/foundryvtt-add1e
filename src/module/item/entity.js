@@ -1,9 +1,9 @@
-import { OseDice } from "../dice.js";
+import { ADD1eDice } from "../dice.js";
 
 /**
  * Override and extend the basic :class:`Item` implementation
  */
-export class OseItem extends Item {
+export class ADD1eItem extends Item {
   // Replacing default image */
   static get defaultIcons() {
     return {
@@ -123,14 +123,14 @@ export class OseItem extends Item {
     };
 
     // Roll and return
-    return OseDice.Roll({
+    return ADD1eDice.Roll({
       event: options.event,
       parts: rollParts,
       data: newData,
       skipDialog: true,
       speaker: ChatMessage.getSpeaker({ actor: this }),
-      flavor: game.i18n.format("OSE.roll.formula", { label: label }),
-      title: game.i18n.format("OSE.roll.formula", { label: label }),
+      flavor: game.i18n.format("ADD1E.roll.formula", { label: label }),
+      title: game.i18n.format("ADD1E.roll.formula", { label: label }),
     });
   }
 
@@ -155,33 +155,33 @@ export class OseItem extends Item {
         data.tags.forEach((t) => {
           tagList.push({label: t.value});
         });
-        tagList.push({label: CONFIG.OSE.saves_long[data.save], icon: "fa-skull"});
+        tagList.push({label: CONFIG.ADD1E.saves_long[data.save], icon: "fa-skull"});
         if (data.missile) {
           tagList.push({label: `${data.range.short}/${data.range.medium}/${data.range.long}`, icon: "fa-bullseye"});
         }
         return tagList;
       case "armor":
-        return [{label: CONFIG.OSE.armor[data.type], icon: "fa-tshirt"}];
+        return [{label: CONFIG.ADD1E.armor[data.type], icon: "fa-tshirt"}];
       case "item":
         return [];
       case "spell":
         tagList.push({label: data.class}, {label: data.range}, {label: data.duration}, {label: data.roll})
         if (data.save) {
-          tagList.push({label: CONFIG.OSE.saves_long[data.save], icon:"fa-skull"});
+          tagList.push({label: CONFIG.ADD1E.saves_long[data.save], icon:"fa-skull"});
         }
         return tagList;
       case "ability":
         let roll = "";
         roll += data.roll ? data.roll : "";
-        roll += data.rollTarget ? CONFIG.OSE.roll_type[data.rollType] : "";
+        roll += data.rollTarget ? CONFIG.ADD1E.roll_type[data.rollType] : "";
         roll += data.rollTarget ? data.rollTarget : "";
         const reqs = data.requirements.split(",");
         reqs.forEach((r) => (tagList.push({label: r})));
         if (data.roll) {
-          tagList.push({label: `${game.i18n.localize("OSE.items.Roll")} ${roll}`});
+          tagList.push({label: `${game.i18n.localize("ADD1E.items.Roll")} ${roll}`});
         }
         if (data.save) {
-          tagList.push({label: `${game.i18n.localize("OSE.spells.Save")} vs ${CONFIG.OSE.saves_long[data.save]}`});
+          tagList.push({label: `${game.i18n.localize("ADD1E.spells.Save")} vs ${CONFIG.ADD1E.saves_long[data.save]}`});
         }
         return tagList;
     }
@@ -222,13 +222,13 @@ export class OseItem extends Item {
         }
         // Auto fill checkboxes
         switch (val) {
-          case CONFIG.OSE.tags.melee:
+          case CONFIG.ADD1E.tags.melee:
             newData.melee = true;
             break;
-          case CONFIG.OSE.tags.slow:
+          case CONFIG.ADD1E.tags.slow:
             newData.slow = true;
             break;
-          case CONFIG.OSE.tags.missile:
+          case CONFIG.ADD1E.tags.missile:
             newData.missile = true;
             break;
         }
@@ -288,7 +288,7 @@ export class OseItem extends Item {
       hasDamage: this.hasDamage,
       isSpell: this.data.type === "spell",
       hasSave: this.hasSave,
-      config: CONFIG.OSE,
+      config: CONFIG.ADD1E,
     };
     templateData.data.properties = this.getTagList();
 

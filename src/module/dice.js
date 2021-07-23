@@ -1,4 +1,4 @@
-export class OseDice {
+export class ADD1eDice {
 
   static async sendRoll({
     parts = [],
@@ -48,11 +48,11 @@ export class OseDice {
       data.roll.blindroll = true;
     }
 
-    templateData.result = OseDice.digestResult(data, roll);
+    templateData.result = ADD1eDice.digestResult(data, roll);
 
     return new Promise((resolve) => {
       roll.render().then((r) => {
-        templateData.rollOSE = r;
+        templateData.rollADD1E = r;
         renderTemplate(template, templateData).then((content) => {
           chatData.content = content;
           // Dice So Nice
@@ -158,27 +158,27 @@ export class OseDice {
     if (game.settings.get("add1e", "ascendingAC")) {
       if ((roll.terms[0] != 20 && (roll.total < targetAac) || roll.terms[0] == 1)) {
         result.details = game.i18n.format(
-          "OSE.messages.AttackAscendingFailure",
+          "ADD1E.messages.AttackAscendingFailure",
           {
             bonus: result.target,
           }
         );
         return result;
       }
-      result.details = game.i18n.format("OSE.messages.AttackAscendingSuccess", {
+      result.details = game.i18n.format("ADD1E.messages.AttackAscendingSuccess", {
         result: roll.total,
       });
       result.isSuccess = true;
     } else {
       if (!this.attackIsSuccess(roll, result.target, targetAc)) {
-        result.details = game.i18n.format("OSE.messages.AttackFailure", {
+        result.details = game.i18n.format("ADD1E.messages.AttackFailure", {
           bonus: result.target,
         });
         return result;
       }
       result.isSuccess = true;
       let value = Math.clamped(result.target - roll.total, -3, 9);
-      result.details = game.i18n.format("OSE.messages.AttackSuccess", {
+      result.details = game.i18n.format("ADD1E.messages.AttackSuccess", {
         result: value,
         bonus: result.target,
       });
@@ -205,7 +205,7 @@ export class OseDice {
       title: title,
       flavor: flavor,
       data: data,
-      config: CONFIG.OSE,
+      config: CONFIG.ADD1E,
     };
 
     // Optionally include a situational bonus
@@ -231,11 +231,11 @@ export class OseDice {
       data.roll.blindroll = true;
     }
 
-    templateData.result = OseDice.digestAttackResult(data, roll);
+    templateData.result = ADD1eDice.digestAttackResult(data, roll);
 
     return new Promise((resolve) => {
       roll.render().then((r) => {
-        templateData.rollOSE = r;
+        templateData.rollADD1E = r;
         dmgRoll.render().then((dr) => {
           templateData.rollDamage = dr;
           renderTemplate(template, templateData).then((content) => {
@@ -307,32 +307,32 @@ export class OseDice {
       speaker: speaker,
 	  chatMessage: chatMessage
     };
-    if (skipDialog) { return OseDice.sendRoll(rollData); }
+    if (skipDialog) { return ADD1eDice.sendRoll(rollData); }
 
     let buttons = {
       ok: {
-        label: game.i18n.localize("OSE.Roll"),
+        label: game.i18n.localize("ADD1E.Roll"),
         icon: '<i class="fas fa-dice-d20"></i>',
         callback: (html) => {
           rolled = true;
           rollData.form = html[0].querySelector("form");
-          roll = OseDice.sendRoll(rollData);
+          roll = ADD1eDice.sendRoll(rollData);
         },
       },
       magic: {
-        label: game.i18n.localize("OSE.saves.magic.short"),
+        label: game.i18n.localize("ADD1E.saves.magic.short"),
         icon: '<i class="fas fa-magic"></i>',
         callback: (html) => {
           rolled = true;
           rollData.form = html[0].querySelector("form");
           rollData.parts.push(`${rollData.data.roll.magic}`);
-          rollData.title += ` ${game.i18n.localize("OSE.saves.magic.short")} (${rollData.data.roll.magic})`;
-          roll = OseDice.sendRoll(rollData);
+          rollData.title += ` ${game.i18n.localize("ADD1E.saves.magic.short")} (${rollData.data.roll.magic})`;
+          roll = ADD1eDice.sendRoll(rollData);
         },
       },
       cancel: {
         icon: '<i class="fas fa-times"></i>',
-        label: game.i18n.localize("OSE.Cancel"),
+        label: game.i18n.localize("ADD1E.Cancel"),
         callback: (html) => { },
       },
     };
@@ -382,25 +382,25 @@ export class OseDice {
     };
     if (skipDialog) {
       return ["melee", "missile", "attack"].includes(data.roll.type)
-        ? OseDice.sendAttackRoll(rollData)
-        : OseDice.sendRoll(rollData);
+        ? ADD1eDice.sendAttackRoll(rollData)
+        : ADD1eDice.sendRoll(rollData);
     }
 
     let buttons = {
       ok: {
-        label: game.i18n.localize("OSE.Roll"),
+        label: game.i18n.localize("ADD1E.Roll"),
         icon: '<i class="fas fa-dice-d20"></i>',
         callback: (html) => {
           rolled = true;
           rollData.form = html[0].querySelector("form");
           roll = ["melee", "missile", "attack"].includes(data.roll.type)
-            ? OseDice.sendAttackRoll(rollData)
-            : OseDice.sendRoll(rollData);
+            ? ADD1eDice.sendAttackRoll(rollData)
+            : ADD1eDice.sendRoll(rollData);
         },
       },
       cancel: {
         icon: '<i class="fas fa-times"></i>',
-        label: game.i18n.localize("OSE.Cancel"),
+        label: game.i18n.localize("ADD1E.Cancel"),
         callback: (html) => { },
       },
     };

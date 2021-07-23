@@ -6,10 +6,10 @@
     {{#if user.isGM}}
     <div class="item-controls flexrow">
       <div class="item-control">
-        <button type="button" class="deal-xp" title="{{localize 'OSE.dialog.xp.deal'}}">{{localize 'OSE.dialog.xp.label'}}</button>
+        <button type="button" class="deal-xp" title="{{localize 'ADD1E.dialog.xp.deal'}}">{{localize 'ADD1E.dialog.xp.label'}}</button>
       </div>
       <div class="item-control">
-        <button type="button" class="select-actors" title="{{localize 'OSE.dialog.partyselect'}}"><i class="fas fa-users"></i></button>
+        <button type="button" class="select-actors" title="{{localize 'ADD1E.dialog.partyselect'}}"><i class="fas fa-users"></i></button>
       </div>
     </div>
     {{/if}}
@@ -28,11 +28,11 @@
           <div title="{{e.name}}" class="field-name flex2">
             {{e.name}}
           </div>
-          <div class="field-long" title="{{localize 'OSE.Health'}}">
+          <div class="field-long" title="{{localize 'ADD1E.Health'}}">
             <i class="fas fa-heart"></i>
             {{e.data.data.hp.value}}/{{e.data.data.hp.max}}
           </div>
-          <div class="field-short" title="{{localize 'OSE.ArmorClass'}}">
+          <div class="field-short" title="{{localize 'ADD1E.ArmorClass'}}">
             <i class="fas fa-shield-alt"></i>
             {{#if @root.settings.ascending}}<strong>{{e.data.data.aac.value}}</strong>
             <sub>{{e.data.data.aac.naked}}</sub>
@@ -42,34 +42,34 @@
         </div>
         <div class="flexrow field-row">
           {{#unless @root.settings.ascending}}
-          <div class="field-short" title="{{localize 'OSE.Thac0'}}">
+          <div class="field-short" title="{{localize 'ADD1E.Thac0'}}">
             <i class="fas fa-crosshairs"></i>
             {{e.data.data.thac0.value}}
           </div>
           {{else}}
-          <div class="field-short" title="{{localize 'OSE.AB'}}">
+          <div class="field-short" title="{{localize 'ADD1E.AB'}}">
             <i class="fas fa-crosshairs"></i>
             {{e.data.data.thac0.bba}}
           </div>
           {{/unless}}
           {{#if (eq e.data.type 'character')}}
-          <div class="field-short" title="{{localize 'OSE.Melee'}}">
+          <div class="field-short" title="{{localize 'ADD1E.Melee'}}">
             <i class="fas fa-fist-raised"></i>
             {{add e.data.data.scores.str.mod e.data.data.thac0.mod.melee}}
           </div>
-          <div class="field-short" title="{{localize 'OSE.Missile'}}">
+          <div class="field-short" title="{{localize 'ADD1E.Missile'}}">
             <i class="fas fa-bullseye"></i>
             {{add e.data.data.scores.dex.mod e.data.data.thac0.mod.missile}}
           </div>
           {{/if}}
           <div class="field-short flex2">
-            <i class="fas fa-shoe-prints" title="{{localize 'OSE.movement.base'}}"></i>
-            <span title="{{localize 'OSE.movement.encounter.long'}}">{{e.data.data.movement.encounter}}</span> <sub
-              title="{{localize 'OSE.movement.exploration.long'}}">{{e.data.data.movement.base}}</sub>
+            <i class="fas fa-shoe-prints" title="{{localize 'ADD1E.movement.base'}}"></i>
+            <span title="{{localize 'ADD1E.movement.encounter.long'}}">{{e.data.data.movement.encounter}}</span> <sub
+              title="{{localize 'ADD1E.movement.exploration.long'}}">{{e.data.data.movement.base}}</sub>
           </div>
           {{#if (eq e.data.type 'character')}}
           <div class="field-short flex2">
-            <i class="fas fa-weight-hanging" title="{{localize 'OSE.Encumbrance'}}"></i>
+            <i class="fas fa-weight-hanging" title="{{localize 'ADD1E.Encumbrance'}}"></i>
             {{roundWeight e.data.data.encumbrance.value}}k
           </div>
           {{/if}}
@@ -80,7 +80,7 @@
             <span title="{{lookup @root.config.saves_long i}}">{{lookup @root.config.saves_short i}} {{s.value}}</span>
             {{/each}}
             {{#if (eq e.data.type 'character')}}<span><i class="fas fa-magic"
-                title="{{localize 'OSE.saves.magic.long'}}"></i>{{mod e.data.data.scores.wis.mod}}</span>{{/if}}
+                title="{{localize 'ADD1E.saves.magic.long'}}"></i>{{mod e.data.data.scores.wis.mod}}</span>{{/if}}
           </div>
         </div>
       </div>

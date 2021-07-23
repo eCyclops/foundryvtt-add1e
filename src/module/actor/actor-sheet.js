@@ -1,7 +1,7 @@
-import { OseActor } from "./entity.js";
-import { OseEntityTweaks } from "../dialog/entity-tweaks.js";
+import { ADD1eActor } from "./entity.js";
+import { ADD1eEntityTweaks } from "../dialog/entity-tweaks.js";
 
-export class OseActorSheet extends ActorSheet {
+export class ADD1eActorSheet extends ActorSheet {
   constructor(...args) {
     super(...args);
   }
@@ -13,7 +13,7 @@ export class OseActorSheet extends ActorSheet {
     data.editable = this.actor.sheet.isEditable;
 
     data.config = {
-      ...CONFIG.OSE,
+      ...CONFIG.ADD1E,
       ascendingAC: game.settings.get("add1e", "ascendingAC"),
       initiative: game.settings.get("add1e", "initiative") != "group",
       encumbrance: game.settings.get("add1e", "encumbranceOption")
@@ -234,7 +234,7 @@ export class OseActorSheet extends ActorSheet {
 
   _onConfigureActor(event) {
     event.preventDefault();
-    new OseEntityTweaks(this.actor, {
+    new ADD1eEntityTweaks(this.actor, {
       top: this.position.top + 40,
       left: this.position.left + (this.position.width - 400) / 2,
     }).render(true);
@@ -252,7 +252,7 @@ export class OseActorSheet extends ActorSheet {
     if (this.options.editable && canConfigure) {
       buttons = [
         {
-          label: game.i18n.localize("OSE.dialog.tweaks"),
+          label: game.i18n.localize("ADD1E.dialog.tweaks"),
           class: "configure-actor",
           icon: "fas fa-code",
           onclick: (ev) => this._onConfigureActor(ev),

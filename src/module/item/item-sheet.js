@@ -1,7 +1,7 @@
 /**
  * Extend the basic ItemSheet with some very simple modifications
  */
-export class OseItemSheet extends ItemSheet {
+export class ADD1eItemSheet extends ItemSheet {
   constructor(...args) {
     super(...args);
 
@@ -46,7 +46,7 @@ export class OseItemSheet extends ItemSheet {
   getData() {
     const data = super.getData().data;
     data.editable = this.document.sheet.isEditable;
-    data.config = CONFIG.OSE;
+    data.config = CONFIG.ADD1E;
     return data;
   }
 
