@@ -1,14 +1,14 @@
 {
-  "name": "ose",
-  "title": "Old-School Essentials",
-  "description": "Play B/X OSR modules with Old-School Essentials on Foundry VTT",
-  "version": "1.2.2",
+  "name": "add1e",
+  "title": "Advanced Dungeons & Dragons, 1st Edition",
+  "description": "Play AD&D1E or OSRIC modules on Foundry VTT",
+  "version": "0.1",
   "minimumCoreVersion": "0.8.6",
-  "compatibleCoreVersion": "0.8.7",
+  "compatibleCoreVersion": "0.8.8",
   "templateVersion": 2,
-  "author": "U~man",
-  "esmodules": ["ose.js"],
-  "styles": ["ose.css"],
+  "author": "Cyclops",
+  "esmodules": ["add1e.js"],
+  "styles": ["add1e.css"],
   "packs": [],
   "languages": [
     {
@@ -44,7 +44,7 @@
   ],
   "gridDistance": 5,
   "gridUnits": "ft",
-  "url": "https://gitlab.com/mesfoliesludiques/foundryvtt-ose",
-  "manifest": "https://gitlab.com/mesfoliesludiques/foundryvtt-ose/raw/master/src/system.json",
-  "download": "https://gitlab.com/mesfoliesludiques/foundryvtt-ose/-/raw/v1.2.2/package/ose-v1.2.2.zip"
+  "url": "https://github.com/eCyclops/foundryvtt-add1e",
+  "manifest": "https://github.com/eCyclops/foundryvtt-add1e/raw/master/src/system.json",
+  "download": "https://github.com/eCyclops/foundryvtt-add1e/archive/refs/tags/v1.2.2.zip"
 }
