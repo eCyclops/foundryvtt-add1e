@@ -56,6 +56,15 @@
                         data-dtype="Number" />
                 </div>
             </li>
+            <li class="attribute ability-score" data-score="com">
+                <h4 class="attribute-name box-title" title="{{ localize 'ADD1E.scores.com.long' }}">
+                    <a>{{ localize "ADD1E.scores.com.short" }}</a>
+                </h4>
+                <div class="attribute-value">
+                    <input name="data.scores.com.value" type="text" value="{{data.scores.com.value}}" placeholder="0"
+                        data-dtype="Number" />
+                </div>
+            </li>
             {{#if data.retainer.enabled}}
             <li class="attribute ability-score" data-stat="lr">
                 <h4 class="attribute-name box-title" title="{{ localize 'ADD1E.Loyalty' }}">

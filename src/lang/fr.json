@@ -87,6 +87,8 @@
   "ADD1E.scores.con.short": "CON",
   "ADD1E.scores.cha.long": "Charisme",
   "ADD1E.scores.cha.short": "CHA",
+  "ADD1E.scores.com.long": "Beauté",
+  "ADD1E.scores.com.short": "COM",
 
   "ADD1E.saves.death.short": "MP",
   "ADD1E.saves.death.long": "Mort Poison",

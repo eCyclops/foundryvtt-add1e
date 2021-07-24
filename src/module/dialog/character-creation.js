@@ -39,6 +39,7 @@ export class ADD1eCharacterCreator extends FormApplication {
       int: 0,
       cha: 0,
       con: 0,
+      com: 0,
       gold: 0,
     };
     this.stats = {
