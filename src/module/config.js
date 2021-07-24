@@ -90,7 +90,7 @@ export const ADD1E = {
     "Elvish - Drow",
     "Elvish - Lendorian",
     "Gnomish (Nonniz)",
-    "Gnomish, Deep (Svirfneblin)"
+    "Gnomish, Deep (Svirfneblin)",
     "Halflingish (Hobniz)",
     "--Humanoid/Non-Human Languages--",
     "Beastfolk",
