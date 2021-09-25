@@ -16,3 +16,6 @@ Weapon quality icons, and the Treasure chest are from [Rexxard](https://assetsto
 
 ## Contributions
 Any feedback is deeply appreciated. Please issue [tickets](https://github.com/eCyclops/foundryvtt-add1e/issues).
+
+### Note to self
+(This is the one I'm actively using in Foundry)
